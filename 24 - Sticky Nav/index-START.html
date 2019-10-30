@@ -54,7 +54,23 @@
   </div>
 
 <script>
+  const main = document.querySelector("#main");
+  const logo = main.querySelector(".logo");
 
+  function checkNav(){
+    if(window.scrollY > main.offsetTop){
+      
+      main.style.position = "fixed";
+      main.style.boxShadow = "1px 3px 8px grey";
+      logo.style.maxWidth = "200px";
+    }else{
+      main.style.position = "relative";
+      main.style.boxShadow = "none";
+      logo.style.maxWidth = "0";
+    }
+  }
+    
+  window.addEventListener('scroll', checkNav);
 </script>
 
 </body>

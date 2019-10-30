@@ -136,7 +136,7 @@
     padding: 20px;
     top: -20px;
     border-radius: 2px;
-    transition: all 0.5s;
+    transition: all 1s;
     transform: translateY(100px);
     will-change: opacity;
     display: none;
@@ -220,6 +220,34 @@
 </style>
 
 <script>
+  const navs = document.querySelectorAll(".cool li");
+  const dropdownBackground = document.querySelector(".dropdownBackground");
+  function handleMouseEnter(){
+    this.classList.add("trigger-enter");
+
+    const dropdown = this.querySelector(".dropdown");
+    const nav = this.querySelector("a");
+    const linkCoords = dropdown.getBoundingClientRect();
+    console.log(dropdown,linkCoords)
+    dropdownBackground.classList.add("open");
+    dropdownBackground.style.width = `${linkCoords.width}px`;
+    dropdownBackground.style.height = `${linkCoords.height}px`;
+
+    dropdownBackground.style.top = `${nav.getBoundingClientRect().top}px`;
+    dropdownBackground.style.left = `${linkCoords.left}px`;
+
+    
+    this.classList.add("trigger-enter-active");
+  }
+
+  function handleMouseLeave(){
+    dropdownBackground.classList.remove("open");
+    this.classList.remove("trigger-enter-active");
+    this.classList.remove("trigger-enter");
+  }
+
+  navs.forEach(nav => nav.addEventListener("mouseenter", handleMouseEnter))
+  navs.forEach(nav => nav.addEventListener("mouseleave", handleMouseLeave))
 </script>
 
 </body>

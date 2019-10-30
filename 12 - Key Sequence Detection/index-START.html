@@ -7,6 +7,16 @@
 </head>
 <body>
 <script>
+  let pressed = [];
+  const sequence = 'enter';
+  window.addEventListener('keyup', (e)=>{
+   
+    pressed.push(e.key);
+    if(pressed.length > sequence.length) pressed.shift();
+
+    const check = pressed.join('') === sequence;
+    if(check) console.log('BINGO')
+  })
 </script>
 </body>
 </html>

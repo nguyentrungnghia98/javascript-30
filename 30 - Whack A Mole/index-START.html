@@ -37,6 +37,37 @@
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
 
+  let interval;
+  let score = 0;
+
+  function whackAMole(){
+    console.log('BINGO')
+    score++;
+    scoreBoard.innerHTML= score;
+  }
+
+  function startGame(){
+    score = 0;
+    scoreBoard.innerHTML= score;
+    clearInterval(interval);    
+    let countTIme = 20;
+
+    interval =  setInterval(()=>{
+      countTIme -= 1;
+      const hole = Math.floor(6 * Math.random());
+      holes[hole].classList.add("up");
+
+      setTimeout(()=>{
+        holes[hole].classList.remove("up");
+      },500)
+
+      if(countTIme === 0){
+        clearInterval(interval);
+      }
+    }, 500)
+  }
+
+  moles.forEach(mole => mole.addEventListener('click', whackAMole))
 </script>
 </body>
 </html>

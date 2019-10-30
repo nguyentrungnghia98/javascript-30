@@ -27,6 +27,29 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    const triggers = document.querySelectorAll('a');
+    const hightlight = document.createElement('span');
+    hightlight.classList.add("highlight");
+    document.body.append(hightlight);
+
+    function hightlightLink(){
+      // linkCoords:
+      // bottom: 259
+      // height: 22
+      // left: 676.828125
+      // right: 780.21875
+      // top: 237
+      // width: 103.390625
+      // x: 676.828125
+      // y: 237
+      const linkCoords = this.getBoundingClientRect();
+      hightlight.style.width = `${linkCoords.width}px`;
+      hightlight.style.height = `${linkCoords.height}px`;
+      hightlight.style.top = `${linkCoords.top + window.scrollY}px`;
+      hightlight.style.left = `${linkCoords.left + window.scrollX}px`;
+    }
+
+    triggers.forEach(a => a.addEventListener("mouseenter", hightlightLink));
   </script>
 </body>
 </html>

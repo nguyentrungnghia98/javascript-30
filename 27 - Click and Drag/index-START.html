@@ -35,7 +35,32 @@
   </div>
 
 <script>
-</script>
+  const items = document.querySelector(".items");
+  let isDrag = false;
+  let lastX;
+  let scrollLeft = 0;
+  function handleDrag(e){
+    if(isDrag){
+      const walk = e.pageX - lastX;
+      items.scrollLeft = scrollLeft - walk
+    }
+  }
 
-  </body>
+  items.addEventListener("mousedown", (e) => {
+    isDrag = true;
+    lastX = e.pageX;
+    scrollLeft = items.scrollLeft;
+    items.classList.add("active");
+  });
+  items.addEventListener("mouseup", () => {
+    isDrag = false;
+    items.classList.remove("active");
+  });
+  items.addEventListener("mousemove", handleDrag);
+  items.addEventListener("mouseleave", () => {
+    isDrag = false;
+    items.classList.remove("active");
+  });
+</script>
+</body>
 </html>

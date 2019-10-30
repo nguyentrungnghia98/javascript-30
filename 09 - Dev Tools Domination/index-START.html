@@ -20,9 +20,9 @@
     // Regular
 
     // Interpolated
-
+    
     // Styled
-
+    console.log("%c This is red color", "color:red;")
     // warning!
 
     // Error :|
@@ -34,13 +34,20 @@
     // clearing
 
     // Viewing DOM Elements
-
+    const obj = {a:123,c:1, d:123};
+    console.dir(obj)
     // Grouping together
-
+    console.table(dogs);
+    dogs.forEach(dog => {
+      console.group(dog.name);
+      console.log(dog.name);
+      console.log(dog.age);
+      console.groupEnd(dog.name);
+    })
     // counting
 
     // timing
-
+  
   </script>
 </body>
 </html>

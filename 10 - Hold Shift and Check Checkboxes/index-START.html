@@ -96,6 +96,33 @@
   </div>
 
 <script>
+  let beforeCheckIndex;
+  let currenCheckIndex;
+  let isKeydown = false;
+  const checkboxs = document.querySelectorAll('.item input[type="checkbox"]');
+  checkboxs.forEach((el,index) => {
+    el.addEventListener('click', () => {
+      console.log('isKeydown', isKeydown)
+      beforeCheckIndex = currenCheckIndex;
+      currenCheckIndex = index;
+      if(isKeydown){
+        const from = beforeCheckIndex <= currenCheckIndex? beforeCheckIndex: currenCheckIndex;
+        const to = beforeCheckIndex > currenCheckIndex? beforeCheckIndex: currenCheckIndex;
+        for(let i = from; i<= to; i++){
+          checkboxs[i].checked = true;
+        }
+      }
+    })
+  })
+
+  window.addEventListener("keydown", (e)=>{
+    if(e.keyCode === 16) isKeydown = true;
+  })
+
+  window.addEventListener("keyup", (e)=>{
+    isKeydown = false;
+  })
+  console.log(checkboxs);
 </script>
 </body>
 </html>

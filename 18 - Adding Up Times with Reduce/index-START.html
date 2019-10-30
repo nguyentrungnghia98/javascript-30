@@ -182,6 +182,19 @@
     </li>
   </ul>
 <script>
+  const list = [...document.querySelectorAll("[data-time]")];
+  const times = list.map(dom => {
+    const [minute, second] = dom.dataset.time.split(":").map(parseFloat);
+    return minute*60 + second;
+  });
+
+  const totalSecond = times.reduce((calSecond, second) => calSecond + second);
+
+  const hour = Math.floor(totalSecond / 3600);
+  const secondLeft = totalSecond % 3600;
+  const minute = Math.floor(secondLeft / 60);
+  const second = secondLeft % 60;
+  console.log( hour + ":" + minute + ":" + second);
 </script>
 </body>
 </html>
